@@ -261,13 +261,14 @@ async def test_bad_autograph_method():
 
 
 @pytest.mark.asyncio
-@pytest.mark.parametrize("blessed,fmt,expected_url",
-     (
-         (True, "autograph_widevine", "https://autograph-hsm.dev.mozaws.net"), 
-         (False, "autograph_widevine", "https://autograph-hsm.dev.mozaws.net"),
-         (False, "stage_autograph_widevine", "https://autograph-stage.dev.mozaws.net"),
-         (False, "gcp_prod_autograph_widevine", "https://autograph-gcp.dev.mozaws.net"),
-     )
+@pytest.mark.parametrize(
+    "blessed,fmt,expected_url",
+    (
+        (True, "autograph_widevine", "https://autograph-hsm.dev.mozaws.net"),
+        (False, "autograph_widevine", "https://autograph-hsm.dev.mozaws.net"),
+        (False, "stage_autograph_widevine", "https://autograph-stage.dev.mozaws.net"),
+        (False, "gcp_prod_autograph_widevine", "https://autograph-gcp.dev.mozaws.net"),
+    ),
 )
 async def test_widevine_autograph(mocker, tmp_path, blessed, sign_config, fmt, expected_url):
     wv = mocker.patch("iscript.autograph.widevine")
@@ -291,12 +292,13 @@ async def test_widevine_autograph(mocker, tmp_path, blessed, sign_config, fmt, e
 
 
 @pytest.mark.asyncio
-@pytest.mark.parametrize("fmt,expected_url",
-     (
-         ("autograph_widevine", "https://autograph-hsm.dev.mozaws.net"),
-         ("stage_autograph_widevine", "https://autograph-stage.dev.mozaws.net"),
-         ("gcp_prod_autograph_widevine", "https://autograph-gcp.dev.mozaws.net"),
-     )
+@pytest.mark.parametrize(
+    "fmt,expected_url",
+    (
+        ("autograph_widevine", "https://autograph-hsm.dev.mozaws.net"),
+        ("stage_autograph_widevine", "https://autograph-stage.dev.mozaws.net"),
+        ("gcp_prod_autograph_widevine", "https://autograph-gcp.dev.mozaws.net"),
+    ),
 )
 async def test_no_widevine(mocker, tmp_path, fmt, expected_url):
     async def fake_call(url, *args, **kwargs):
